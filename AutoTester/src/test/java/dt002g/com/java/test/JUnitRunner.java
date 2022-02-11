@@ -53,7 +53,7 @@ public class JUnitRunner {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
                 .selectors(selectPackage("dt002g.com.java.test")).filters(includeClassNamePatterns(".*Test")).build();
         Launcher launcher = LauncherFactory.create();
-        TestPlan testPlan = launcher.discover(request);
+        TestPlan testPlan = launcher.discover(request); // Testing
         launcher.registerTestExecutionListeners(listener);
         launcher.execute(request);
     }
