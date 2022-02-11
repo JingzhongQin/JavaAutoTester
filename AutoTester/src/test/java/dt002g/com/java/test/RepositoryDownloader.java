@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class RepositoryDownloader {
 
     String url; // GitHub repo link
-    final String CLONE_DIRECTORY_PATH = "../temp/";
+    final String CLONE_DIRECTORY_PATH = "./TempRepository/";
 
     public RepositoryDownloader(String url) {
         this.url = url;
