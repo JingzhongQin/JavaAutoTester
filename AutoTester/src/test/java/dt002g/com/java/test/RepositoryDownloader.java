@@ -8,14 +8,14 @@ import java.nio.file.Paths;
 
 public class RepositoryDownloader {
 
-    String url; // Github repo link
-    final String CLONE_DIRECTORY_PATH = "/temp/";
+    String url; // GitHub repo link
+    final String CLONE_DIRECTORY_PATH = "../temp/";
 
     public RepositoryDownloader(String url) {
         this.url = url;
     }
 
-    public void cloneRepo() {
+    public boolean cloneRepo() {
         System.out.println("Cloning "+url);
 
         try {
@@ -24,9 +24,11 @@ public class RepositoryDownloader {
                     .setDirectory(Paths.get(CLONE_DIRECTORY_PATH).toFile())
                     .call();
             System.out.println("Completed Cloning");
+            return true;
         } catch (GitAPIException e) {
             System.out.println("Exception occurred while cloning repo");
             e.printStackTrace();
         }
+        return false;
     }
 }
