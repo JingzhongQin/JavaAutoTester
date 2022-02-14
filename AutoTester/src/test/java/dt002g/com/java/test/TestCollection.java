@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class TestCollection {
     final String CLONE_DIRECTORY_PATH = "TempRepository";
@@ -25,12 +26,12 @@ public class TestCollection {
                         String filePath = TEST_COLLECTION_PACKAGE_PATH + path.getFileName();
                         Files.copy(path.toAbsolutePath(), Path.of(filePath).toAbsolutePath());
                     }catch(IOException e){
-                        System.out.println("Error, cannot copy file: " + e.toString());
+                        System.out.println("Error, cannot copy file: " + e);
                     }
                 }
             }
         }else{
-            for(File subDirectory : path.toFile().listFiles()){
+            for(File subDirectory : Objects.requireNonNull(path.toFile().listFiles())){
                 collectTestFiles(Path.of(subDirectory.getPath()));
             }
         }
