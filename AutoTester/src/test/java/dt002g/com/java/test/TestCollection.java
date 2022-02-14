@@ -27,7 +27,7 @@ public class TestCollection {
                     try{
                         Files.copy(path, Path.of(TEST_COLLECTION_PACKAGE_PATH));
                     }catch(IOException e){
-                        System.out.println("Error, cannot copy file: " + e.toString());
+                        System.out.println("Error, cannot copy file: " + e);
                     }
 
                     System.out.println(path.toFile().getAbsolutePath());
