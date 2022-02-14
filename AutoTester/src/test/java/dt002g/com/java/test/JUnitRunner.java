@@ -53,7 +53,7 @@ public class JUnitRunner {
 
     public void runAll(){
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-                .selectors(selectPackage("dt002g.com.java.test")).filters(includeClassNamePatterns(".*Test")).build();
+                .selectors(selectPackage("dt002g.com.java.testCollection")).filters(includeClassNamePatterns(".*Test")).build();
         Launcher launcher = LauncherFactory.create();
         TestPlan testPlan = launcher.discover(request); // Testing
         launcher.registerTestExecutionListeners(listener);
