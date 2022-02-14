@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestCollection {
-    final String CLONE_DIRECTORY_PATH = "./TempRepository";
-    final String TEST_COLLECTION_PACKAGE_PATH = "./AutoTester/src/test/dt002g.com.java/testCollection";
+    final String CLONE_DIRECTORY_PATH = "TempRepository";
+    final String TEST_COLLECTION_PACKAGE_PATH = "javaautotester/AutoTester/src/test/java/dt002g/com/java/test/testCollection/";
     final List<String> keywords = Arrays.asList("@Test", "@Before", "@After", "@Ignore", "org.junit.Assert", "org.junit.TestCase",
-                                                "org.junit.TestResult", "org.junit.TestSuite");
+            "org.junit.TestResult", "org.junit.TestSuite");
     final String[] testStr = {"test", "Test"};
 
     public void collectTestFiles(Path path){
@@ -24,12 +24,11 @@ public class TestCollection {
             if(path.toFile().getName().contains(testStr[0]) || path.toFile().getName().contains(testStr[1])){
                 if(containsTestCase(path)){
                     try{
-                        Files.copy(path, Path.of(TEST_COLLECTION_PACKAGE_PATH));
+                        String filePath = TEST_COLLECTION_PACKAGE_PATH + path.getFileName();
+                        Files.copy(path.toAbsolutePath(), Path.of(filePath).toAbsolutePath());
                     }catch(IOException e){
                         System.out.println("Error, cannot copy file: " + e.toString());
                     }
-
-                    System.out.println(path.toFile().getAbsolutePath());
                 }
             }
         }else{
@@ -52,12 +51,11 @@ public class TestCollection {
         }catch(IOException e){
             e.printStackTrace();
         }
-       return false;
+        return false;
     }
 
     public static void main(String[] args) {
         RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/STAMP-project/test-runner.git");
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         if(repositoryDownloader.cloneRepo()){
             TestCollection testCollection = new TestCollection();
             Path rootPath = Path.of(testCollection.CLONE_DIRECTORY_PATH);
