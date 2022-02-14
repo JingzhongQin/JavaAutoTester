@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class TestCollection {
     final String CLONE_DIRECTORY_PATH = "TempRepository";
-    final String TEST_COLLECTION_PACKAGE_PATH = "javaautotester/AutoTester/src/test/java/dt002g/com/java/test/testCollection/";
+    final String TEST_COLLECTION_PACKAGE_PATH = "javaautotester/AutoTester/src/test/java/dt002g/com/java/testCollection/";
     final List<String> keywords = Arrays.asList("@Test", "@Before", "@After", "@Ignore", "org.junit.Assert", "org.junit.TestCase",
             "org.junit.TestResult", "org.junit.TestSuite");
     final String[] testStr = {"test", "Test"};
