@@ -24,6 +24,7 @@ public class TestCollection {
                 if(containsTestCase(path)){
                     try{
                         String filePath = TEST_COLLECTION_PACKAGE_PATH + path.getFileName();
+                        System.out.println(filePath); 
                         Files.copy(path.toAbsolutePath(), Path.of(filePath).toAbsolutePath());
                     }catch(IOException e){
                         System.out.println("Error, cannot copy file: " + e);
