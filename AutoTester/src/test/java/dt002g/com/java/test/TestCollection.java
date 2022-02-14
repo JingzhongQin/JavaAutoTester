@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class TestCollection {
     final String CLONE_DIRECTORY_PATH = "./TempRepository";
@@ -33,7 +34,7 @@ public class TestCollection {
                 }
             }
         }else{
-            for(File subDirectory : path.toFile().listFiles()){
+            for(File subDirectory : Objects.requireNonNull(path.toFile().listFiles())){
                 collectTestFiles(Path.of(subDirectory.getPath()));
             }
         }
