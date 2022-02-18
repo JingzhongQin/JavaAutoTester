@@ -1,7 +1,6 @@
 package dt002g.com.java.test;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,6 +58,8 @@ public class TestCaseFinder {
                 String projectType = projectIdentifier.getProjectType();
                 TestRunner testRunner = new TestRunner();
                 testRunner.runTests(projectType);
+                DirectoryCleaner directoryCleaner = new DirectoryCleaner();
+                directoryCleaner.removeRepository();
                 System.out.println("Done!");
             }
 

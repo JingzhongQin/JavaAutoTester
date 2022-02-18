@@ -22,7 +22,8 @@ public class RepositoryDownloader {
             Git.cloneRepository()
                     .setURI(url)
                     .setDirectory(Paths.get(CLONE_DIRECTORY_PATH).toFile())
-                    .call();
+                    .call()
+                    .close();
             System.out.println("Completed Cloning");
             return true;
         } catch (GitAPIException e) {
