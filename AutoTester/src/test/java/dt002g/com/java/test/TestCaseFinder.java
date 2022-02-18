@@ -1,7 +1,10 @@
 package dt002g.com.java.test;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,7 +48,7 @@ public class TestCaseFinder {
         return false;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/LableOrg/java-maven-junit-helloworld.git");
         if(repositoryDownloader.cloneRepo()){
             TestCaseFinder testCaseFinder = new TestCaseFinder();
@@ -57,7 +60,16 @@ public class TestCaseFinder {
             if(containTests[0] > 0){
                 ProjectIdentifier projectIdentifier = new ProjectIdentifier();
                 projectIdentifier.checkProjectType();
-                System.out.println("Project type: " + projectIdentifier.getProjectType());
+                String type = projectIdentifier.getProjectType();
+                if(type.equals(ProjectIdentifier.MAVEN)){
+                    System.out.println("True");
+                    try {
+                        Runtime.getRuntime().
+                                exec("cmd /c start \"\" runMavenTests.bat");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 System.out.println("-> TestRunner");
                 System.out.println();
             }

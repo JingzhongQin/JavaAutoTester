@@ -7,9 +7,9 @@ import java.util.Objects;
 
 //This class is used to identify the type of project: Gradle project or Maven project
 public class ProjectIdentifier {
-    final String GRADLE = "Gradle";
-    final String MAVEN = "Maven";
-    final String NONE = "NONE";
+    final static String GRADLE = "Gradle";
+    final static String MAVEN = "Maven";
+    final static String NONE = "NONE";
     final String POM_FILE = "pom.xml";
     final String GRADLE_BUILD_FILE = "build.gradle";
     final String CLONE_DIRECTORY_PATH = "TempRepository";
