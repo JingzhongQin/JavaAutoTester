@@ -46,7 +46,7 @@ public class TestCaseFinder {
     }
 
     public static void main(String[] args) {
-        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/maegges65/junit-tests.git");
+        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/LableOrg/java-maven-junit-helloworld.git");
         if(repositoryDownloader.cloneRepo()){
             TestCaseFinder testCaseFinder = new TestCaseFinder();
             Path rootPath = Path.of(testCaseFinder.CLONE_DIRECTORY_PATH);
@@ -55,7 +55,9 @@ public class TestCaseFinder {
 
             //Project has some test cases
             if(containTests[0] > 0){
-                System.out.println("-> Project Identifier ");
+                ProjectIdentifier projectIdentifier = new ProjectIdentifier();
+                projectIdentifier.checkProjectType();
+                System.out.println("Project type: " + projectIdentifier.getProjectType());
                 System.out.println("-> TestRunner");
                 System.out.println();
             }
