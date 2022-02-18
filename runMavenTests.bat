@@ -1,3 +1,3 @@
 
-cd "TempRepository/
+cd TempRepository/
 call mvn clean test

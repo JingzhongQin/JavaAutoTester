@@ -56,50 +56,13 @@ public class TestCaseFinder {
             //Project has some test cases
             if(containTests[0] > 0){
                 ProjectIdentifier projectIdentifier = new ProjectIdentifier();
-                projectIdentifier.checkProjectType();
-                String type = projectIdentifier.getProjectType();
-                if(type.equals(ProjectIdentifier.MAVEN)){
-                    System.out.println("True");
-
-                    Process p = null;
-
-                    try {
-                        p = Runtime.getRuntime().exec("runMavenTests.bat");
-                    } catch (IOException e) {
-                        System.err.println("Error on exec(runMavenTests.bat)");
-                        e.printStackTrace();
-                    }
-
-                    copyOutput(p.getInputStream(), System.out);
-                    try {
-                        p.waitFor();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                System.out.println("-> TestRunner");
-                System.out.println();
+                String projectType = projectIdentifier.getProjectType();
+                TestRunner testRunner = new TestRunner();
+                testRunner.runTests(projectType);
+                System.out.println("Done!");
             }
 
         }
     }
 
-    static void copyOutput(InputStream in, OutputStream out){
-        while (true) {
-            int c = 0;
-            try {
-                c = in.read();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (c == -1)
-                break;
-            try {
-                out.write((char) c);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
