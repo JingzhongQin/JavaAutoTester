@@ -1,9 +1,6 @@
 package dt002g.com.java.test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -48,7 +45,7 @@ public class TestCaseFinder {
         return false;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/LableOrg/java-maven-junit-helloworld.git");
         if(repositoryDownloader.cloneRepo()){
             TestCaseFinder testCaseFinder = new TestCaseFinder();
@@ -63,17 +60,46 @@ public class TestCaseFinder {
                 String type = projectIdentifier.getProjectType();
                 if(type.equals(ProjectIdentifier.MAVEN)){
                     System.out.println("True");
+
+                    Process p = null;
+
                     try {
-                        Runtime.getRuntime().
-                                exec("cmd /c start \"\" runMavenTests.bat");
+                        p = Runtime.getRuntime().exec("runMavenTests.bat");
                     } catch (IOException e) {
+                        System.err.println("Error on exec(runMavenTests.bat)");
+                        e.printStackTrace();
+                    }
+
+                    copyOutput(p.getInputStream(), System.out);
+                    try {
+                        p.waitFor();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
                 System.out.println("-> TestRunner");
                 System.out.println();
             }
 
+        }
+    }
+
+    static void copyOutput(InputStream in, OutputStream out){
+        while (true) {
+            int c = 0;
+            try {
+                c = in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (c == -1)
+                break;
+            try {
+                out.write((char) c);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
