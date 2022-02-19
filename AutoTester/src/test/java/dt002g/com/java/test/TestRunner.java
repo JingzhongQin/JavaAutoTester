@@ -6,17 +6,17 @@ import java.io.OutputStream;
 
 public class TestRunner {
 
-    private final String runMavenTestBatch = "runMavenTests.bat";
-    private final String runGradleTestBatch = "runGradleTests.bat";
-
-    TestRunner(){}
+    TestRunner() {}
 
     public void runTests(String projectType){
+        final String RUN_MAVEN_TEST_BATCH = "runMavenTests.bat";
+        final String RUN_GRADLE_TEST_BATCH = "runGradleTests.bat";
+
         String batchFileToRun;
         if(projectType.equals(ProjectIdentifier.GRADLE)) {
-            batchFileToRun = runGradleTestBatch;
+            batchFileToRun = RUN_GRADLE_TEST_BATCH;
         }else if(projectType.equals(ProjectIdentifier.MAVEN)){
-            batchFileToRun = runMavenTestBatch;
+            batchFileToRun = RUN_MAVEN_TEST_BATCH;
         }else{
             System.out.println("Error, the project should be a Maven or Gradle project");
             return;
