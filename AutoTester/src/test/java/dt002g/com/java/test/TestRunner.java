@@ -3,16 +3,19 @@ package dt002g.com.java.test;
 import java.io.*;
 
 public class TestRunner {
+    final String RUN_MAVEN_TEST_BATCH = "runMavenTests.bat";
+    final String RUN_GRADLE_TEST_BATCH = "runGradleTests.bat";
+    final String GRADLE_BUILD_FILE_PATH = "./TempRepository/build.gradle";
+    final String TEST_LOGGING = "test { testLogging { events \"PASSED\", \"SKIPPED\", \"FAILED\"}}";
 
     TestRunner() {}
 
     public void runTests(String projectType){
-        final String RUN_MAVEN_TEST_BATCH = "runMavenTests.bat";
-        final String RUN_GRADLE_TEST_BATCH = "runGradleTests.bat";
 
         String batchFileToRun;
         if(projectType.equals(ProjectIdentifier.GRADLE)) {
             batchFileToRun = RUN_GRADLE_TEST_BATCH;
+            addTestLogging();
         }else if(projectType.equals(ProjectIdentifier.MAVEN)){
             batchFileToRun = RUN_MAVEN_TEST_BATCH;
         }else{
@@ -44,7 +47,7 @@ public class TestRunner {
         }
     }
 
-    public void copyOutput(InputStream in, OutputStream out){
+    private void copyOutput(InputStream in, OutputStream out){
         while (true) {
             int c = 0;
             try {
@@ -61,4 +64,17 @@ public class TestRunner {
             }
         }
     }
+
+    private void addTestLogging(){
+        File buildGradleFile = new File(GRADLE_BUILD_FILE_PATH);
+        try {
+            FileWriter fw = new FileWriter(buildGradleFile, true);
+            fw.append(TEST_LOGGING);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

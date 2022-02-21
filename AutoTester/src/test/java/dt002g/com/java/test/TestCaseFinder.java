@@ -45,7 +45,7 @@ public class TestCaseFinder {
     }
 
     public static void main(String[] args){
-        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/openjfx/javafx-gradle-plugin.git");
+        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/gradle/gradle-build-scan-quickstart.git");
         if(repositoryDownloader.cloneRepo()){
             TestCaseFinder testCaseFinder = new TestCaseFinder();
             Path rootPath = Path.of(testCaseFinder.CLONE_DIRECTORY_PATH);
@@ -58,7 +58,6 @@ public class TestCaseFinder {
                 String projectType = projectIdentifier.getProjectType();
                 TestRunner testRunner = new TestRunner();
                 testRunner.runTests(projectType);
-
             }else{
                 System.out.println("Project doesn't have any test cases");
             }
