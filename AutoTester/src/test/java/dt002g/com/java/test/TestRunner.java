@@ -28,6 +28,7 @@ public class TestRunner {
             e.printStackTrace();
         }
 
+        assert p != null;
         copyOutput(p.getInputStream(), System.out);
         try {
             p.waitFor();
