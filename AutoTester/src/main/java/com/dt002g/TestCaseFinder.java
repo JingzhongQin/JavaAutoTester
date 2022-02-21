@@ -1,4 +1,4 @@
-package dt002g.com.java.test;
+package com.dt002g;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -43,30 +43,4 @@ public class TestCaseFinder {
         }
         return false;
     }
-
-    public static void main(String[] args){
-        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/gradle/gradle-build-scan-quickstart.git");
-        if(repositoryDownloader.cloneRepo()){
-            TestCaseFinder testCaseFinder = new TestCaseFinder();
-            Path rootPath = Path.of(testCaseFinder.CLONE_DIRECTORY_PATH);
-            int[] containTests = new int[1];
-            testCaseFinder.findTestFile(rootPath, containTests);
-
-            //Project has some test cases
-            if(containTests[0] > 0){
-                ProjectIdentifier projectIdentifier = new ProjectIdentifier();
-                String projectType = projectIdentifier.getProjectType();
-                TestRunner testRunner = new TestRunner();
-                testRunner.runTests(projectType);
-            }else{
-                System.out.println("Project doesn't have any test cases");
-            }
-
-            DirectoryCleaner directoryCleaner = new DirectoryCleaner();
-            directoryCleaner.removeRepository();
-            System.out.println("Done!");
-
-        }
-    }
-
 }

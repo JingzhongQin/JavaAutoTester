@@ -1,4 +1,4 @@
-package dt002g.com.java.test;
+package com.dt002g;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.GitCommand;

@@ -1,4 +1,4 @@
-package dt002g.com.java.test;
+package com.dt002g;
 
 import java.io.*;
 
