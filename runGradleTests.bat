@@ -1,2 +1,3 @@
+
 cd TempRepository/
-call gradle cleanTest test 
+call gradle cleanTest test

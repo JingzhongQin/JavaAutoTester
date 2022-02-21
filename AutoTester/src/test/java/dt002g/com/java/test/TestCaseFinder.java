@@ -44,8 +44,8 @@ public class TestCaseFinder {
         return false;
     }
 
-    public static void main(String[] args) {
-        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/LableOrg/java-maven-junit-helloworld.git");
+    public static void main(String[] args){
+        RepositoryDownloader repositoryDownloader = new RepositoryDownloader("https://github.com/openjfx/javafx-gradle-plugin.git");
         if(repositoryDownloader.cloneRepo()){
             TestCaseFinder testCaseFinder = new TestCaseFinder();
             Path rootPath = Path.of(testCaseFinder.CLONE_DIRECTORY_PATH);
@@ -58,10 +58,14 @@ public class TestCaseFinder {
                 String projectType = projectIdentifier.getProjectType();
                 TestRunner testRunner = new TestRunner();
                 testRunner.runTests(projectType);
-                DirectoryCleaner directoryCleaner = new DirectoryCleaner();
-                directoryCleaner.removeRepository();
-                System.out.println("Done!");
+
+            }else{
+                System.out.println("Project doesn't have any test cases");
             }
+
+            DirectoryCleaner directoryCleaner = new DirectoryCleaner();
+            directoryCleaner.removeRepository();
+            System.out.println("Done!");
 
         }
     }

@@ -11,7 +11,7 @@ public class DirectoryCleaner {
     public void removeRepository(){
         deleteSubDirectories(root);
         if(!root.delete()){
-            System.out.println("Fail to delete file: " + root.getAbsolutePath() + root.getName());
+            System.out.println("Fail to delete file: " + root.getAbsolutePath() + ": " + root.getName());
         }
     }
 
@@ -24,7 +24,7 @@ public class DirectoryCleaner {
                     deleteSubDirectories(file);
                 }
                 if(!file.delete()){
-                    System.out.println("Fail to delete file: " + root.getAbsolutePath() + root.getName());
+                    System.out.println("Fail to delete file: " + root.getAbsolutePath() + ": " + root.getName());
                 }
             }
         }

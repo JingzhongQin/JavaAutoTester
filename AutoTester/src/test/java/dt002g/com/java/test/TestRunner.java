@@ -1,8 +1,6 @@
 package dt002g.com.java.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 public class TestRunner {
 
@@ -31,6 +29,13 @@ public class TestRunner {
         }
 
         copyOutput(p.getInputStream(), System.out);
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        copyOutput(p.getErrorStream(), System.out);
         try {
             p.waitFor();
         } catch (InterruptedException e) {
