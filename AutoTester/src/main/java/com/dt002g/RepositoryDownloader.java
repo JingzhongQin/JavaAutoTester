@@ -17,19 +17,16 @@ public class RepositoryDownloader {
 
     //Download a repository using URL from GitHub and the repository will be stored in ./TemRepository/
     public boolean cloneRepo() {
-        System.out.println("Cloning "+url);
         try {
             Git.cloneRepository()
                     .setURI(url)
                     .setDirectory(Paths.get(CLONE_DIRECTORY_PATH).toFile())
                     .call()
                     .close();
-            System.out.println("Completed Cloning");
-
             //Return true if the repository has been downloaded successfully
             return true;
         } catch (GitAPIException e) {
-            System.out.println("Exception occurred while cloning repo");
+            System.out.println("Error, fail to clone the repository, please try again");
             e.printStackTrace();
         }
 
