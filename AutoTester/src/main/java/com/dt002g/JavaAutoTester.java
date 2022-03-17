@@ -32,7 +32,7 @@ public class JavaAutoTester {
 
                 //Remove the repository
                 directoryCleaner.removeRepository();
-                System.out.println("Error, invalid project type. The project should be a Maven or Gradle projects");
+                System.out.println("Error, invalid project type. The project should be a Maven or Gradle project");
                 return;
             }
 
