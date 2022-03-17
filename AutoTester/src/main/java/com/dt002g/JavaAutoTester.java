@@ -33,6 +33,7 @@ public class JavaAutoTester {
                 //Remove the repository
                 directoryCleaner.removeRepository();
                 System.out.println("The project should be a Maven or Gradle project");
+                return;
             }
 
             //Try to find test cases
