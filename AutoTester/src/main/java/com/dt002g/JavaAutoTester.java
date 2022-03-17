@@ -25,6 +25,16 @@ public class JavaAutoTester {
         if(repositoryDownloader.cloneRepo()){
             directoryCleaner.projectHasDownloaded();
 
+            //Check if the project is a Maven or Gradle project
+            ProjectIdentifier projectIdentifier = new ProjectIdentifier();
+            String projectType = projectIdentifier.getProjectType();
+            if(projectType.equals(ProjectIdentifier.NONE)){
+
+                //Remove the repository
+                directoryCleaner.removeRepository();
+                System.out.println("The project should be a Maven or Gradle project");
+            }
+
             //Try to find test cases
             TestCaseFinder testCaseFinder = new TestCaseFinder();
             Path rootPath = Path.of(testCaseFinder.CLONE_DIRECTORY_PATH);
@@ -32,10 +42,6 @@ public class JavaAutoTester {
 
             //Project contains some test cases
             if(testCaseFinder.testCaseFound()){
-
-                //Check if the project is a Maven or Gradle project
-                ProjectIdentifier projectIdentifier = new ProjectIdentifier();
-                String projectType = projectIdentifier.getProjectType();
 
                 //Run test cases and output the result
                 TestRunner testRunner = new TestRunner();
@@ -46,7 +52,6 @@ public class JavaAutoTester {
 
             //Remove the repository
             directoryCleaner.removeRepository();
-            System.out.println("Done!");
         }
     }
 }
