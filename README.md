@@ -20,7 +20,7 @@ To set up the global environment:
 * Go to Global Variables
 * Press the button Global variables 
 * Under ```System variables``` you will find ```Path```, click on it
-* Press ```New``` and type the full location to ```out\artifacts```
+* Press ```New``` and type the full location to ```out\artifacts\AutoTester_jar```
 
 To see if everything is set up correctly, open your Command Line Interface and type 
 ```JavaAutoTester [GitHub repository link]```.
