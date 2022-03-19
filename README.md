@@ -16,9 +16,6 @@ See links below on how to install all 3 programs:
 Start by downloading the repository on your PC. Press on the project folder and copy
 the ```out``` folder to a desired folder (like in the program folder).
 
-Inside the ```out\artifacts\AutoTester_jar``` folder you will find a file named
-```JavaAutoTester.bat```, copy-paste it to ```out\artifacts\```.
-
 To set up the global environment:
 * Go to Global Variables
 * Press the button Global variables 
